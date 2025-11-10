@@ -1,3 +1,7 @@
+# 🚀  Deploying a Full Stack React + FastAPI Application using Docker, Azure Container Registry (ACR), and Azure Virtual Machine (VM)
+
+
+
 ## 🧠 Introduction
 
 This project demonstrates how I deployed a **full-stack web application** built with **React (frontend)** and **FastAPI (backend)** on **Microsoft Azure**, using **Docker**, **Azure Container Registry (ACR)**, and **Docker Compose**.
