@@ -35,7 +35,7 @@ Make sure you have the following prerequisites:
 
 ---
 
-🪜 Steps Summary
+## 🪜 Steps Summary
 
 Step 1: Open & Navigate to Project
 
