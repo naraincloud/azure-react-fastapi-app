@@ -10,9 +10,10 @@ It’s a complete DevOps workflow from containerization and image management to 
 
 ---
 
-## ⚠️ Before You Start
+## ⚠️ Prerequisite 
 
-Make sure you have the following prerequisites:
+
+Before you start, make sure you have the following prerequisites:
 
 - ✅ An **Azure account**  
 - ✅ A running Azure Virtual Machine
