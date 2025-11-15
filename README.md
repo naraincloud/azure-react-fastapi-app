@@ -36,16 +36,41 @@ Before you start, make sure you have the following prerequisites:
 
 ---
 
-## 📁 Project Structure
+## 🏗️ Architecture
+```
+Local Machine
+│
+├── React Frontend (Docker)
+├── FastAPI Backend (Docker)
+│
+└── Push to Azure Container Registry (ACR)
+         ↓
+Azure Cloud
+│
+├── Azure Container Registry (ACR)
+│     └── Stores Docker images
+│
+└── Azure Virtual Machine (Ubuntu)
+        ├── Pull frontend image
+        ├── Pull backend image
+        └── Run using Docker Compose
+```
 
-```
-azure-react-fastapi-app/
-├── React/                 # Frontend application
-├── FastAPI/               # Backend API
-├── docker-compose.yml     # Multi-container orchestration
-├── Dockerfile.frontend    # React container setup
-└── Dockerfile.backend     # FastAPI container setup
-```
+## Components
+
+1️⃣ Local Development
+Write code
+Build Docker images
+
+2️⃣ Azure Container Registry
+Create ACR
+Push images
+
+3️⃣ Azure VM Deployment
+Install Docker & Compose
+Pull images
+Deploy using docker-compose.yml
+
 ---
 ## 🪜 Steps Summary
 
