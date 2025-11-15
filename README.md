@@ -42,3 +42,24 @@ Step 1: Open & Navigate to Project
 
 Open your terminal or VS Code and navigate to your project folder:
 
+```bash
+cd Documents
+cd azure-react-fastapi-app
+```
+This folder contains both your frontend (React) and backend (FastAPI) applications
+
+Step 2: Create a Dockerfile for the FastAPI Backend
+
+```Create backend/Dockerfile:
+
+# FastAPI Backend Dockerfile
+
+FROM python:3.10-slim
+WORKDIR /app
+COPY ./requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+EXPOSE 8000
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", 8000"]
+```
+
