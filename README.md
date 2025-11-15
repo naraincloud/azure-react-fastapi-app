@@ -101,10 +101,34 @@ CMD ["serve", "-s", "build", "-l", "3000"]
 ```
 
 Step 4: Azure Container Registry
-log into your azure 
 
-· Create ACR: publicareg.azurecr.io
-· Configured authentication and access policies
+Log into Azure:
+
+```
+az login
+```
+Create a resource group (you can change the name):
+
+
+```
+az group create --name publicareg --location eastus
+```
+Create ACR:
+
+
+```
+az acr create \
+  --resource-group publicareg \
+  --name publicfastapireg \
+  --sku Basic \
+  --public-access-enabled true
+```
+
+Log in:
+
+```
+az acr login --name publicfastapireg
+```
 
 Step 5: Build & Push Images
 
