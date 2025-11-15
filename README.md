@@ -70,6 +70,18 @@ Push images
 Install Docker & Compose
 Pull images
 Deploy using docker-compose.yml
+---
+
+## 📁 Project Structure
+```
+azure-react-fastapi-app/
+├── React/                 # React frontend
+├── FastAPI/               # FastAPI backend
+├── docker-compose.yml     # Deployment orchestrator
+├── Dockerfile.frontend    # React Dockerfile
+└── Dockerfile.backend     # FastAPI Dockerfile
+```
+
 
 ---
 ## 🪜 Steps Summary
