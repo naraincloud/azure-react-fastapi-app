@@ -36,6 +36,17 @@ Before you start, make sure you have the following prerequisites:
 
 ---
 
+## 📁 Project Structure
+
+```
+azure-react-fastapi-app/
+├── React/                 # Frontend application
+├── FastAPI/               # Backend API
+├── docker-compose.yml     # Multi-container orchestration
+├── Dockerfile.frontend    # React container setup
+└── Dockerfile.backend     # FastAPI container setup
+```
+---
 ## 🪜 Steps Summary
 
 Step 1: Open & Navigate to Project
@@ -63,3 +74,78 @@ EXPOSE 8000
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", 8000"]
 ```
 
+Step 3: Create a Dockerfile for the React Frontend
+
+```
+Create frontend/Dockerfile:
+
+# React Frontend Dockerfile
+
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+RUN npm install -g serve
+
+EXPOSE 3000
+
+CMD ["serve", "-s", "build", "-l", "3000"]
+```
+
+Step 4: Azure Container Registry
+log into your azure 
+
+· Create ACR: publicareg.azurecr.io
+· Configured authentication and access policies
+
+Step 5: Build & Push Images
+
+```bash
+docker build -t publicareg.azurecr.io/react-frontend:latest .
+docker build -t publicareg.azurecr.io/fastapi-backend:latest .
+docker push publicareg.azurecr.io/react-frontend:latest
+docker push publicareg.azurecr.io/fastapi-backend:latest
+```
+
+Step 6: Azure Infrastructure
+
+· Resource Group: rest-fastapi
+· Virtual Machine: Ubuntu 22.04
+· Network Security Groups configured
+· Public IP: 52.226.72.138
+
+
+Step 7: Docker Compose Deployment
+
+```yaml
+services:
+  frontend:
+    image: publicareg.azurecr.io/react-frontend:latest
+    ports: ["3000:80"]
+    
+  backend:
+    image: publicareg.azurecr.io/fastapi-backend:latest  
+    ports: ["8000:8000"]
+```
+
+
+Step 8: Application Access
+
+· Frontend: http://52.226.72.138:3000
+· Backend API: http://52.226.72.138:8000
+
+---
+## 🔗 Live Demo
+
+· Frontend: http://52.226.72.138:3000
+· Backend API: http://52.226.72.138:8000
+
+---
