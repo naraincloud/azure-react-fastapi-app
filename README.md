@@ -139,12 +139,40 @@ docker push publicareg.azurecr.io/react-frontend:latest
 docker push publicareg.azurecr.io/fastapi-backend:latest
 ```
 
-Step 6: Azure Infrastructure
+Step 6: Prepare Azure VM
 
-· Resource Group: rest-fastapi
-· Virtual Machine: Ubuntu 22.04
-· Network Security Groups configured
-· Public IP: 52.226.72.138
+SSH into your VM:
+
+```
+ssh azureuser@YOUR_VM_PUBLIC_IP
+```
+
+Install Docker:
+
+```
+sudo apt update
+sudo apt install docker.io -y
+sudo systemctl enable docker
+sudo systemctl start docker
+```
+Install Docker Compose:
+
+```
+sudo curl -L "https://github.com/docker/compose/releases/download/2.22.0/docker-compose-$(uname -s)-$(uname -m)" \
+  -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compos
+```
+Log in to ACR from VM:
+
+```
+az acr login --name publicfastapireg
+```
+Pull both images:
+
+```
+docker pull publicfastapireg.azurecr.io/fastapi-backend:v1
+docker pull publicfastapireg.azurecr.io/react-frontend:v1
+```
 
 
 Step 7: Docker Compose Deployment
